@@ -16,12 +16,13 @@ class collection {
     addVinyl(vinyl) {
         this.records.push(vinyl); // Push vinyl to collection
     }
+
+    removeVinyl(name) {
+        this.records.splice(this.records.findIndex(vinyl => vinyl.title === name), 1); // Find index of inputted title and remove it
+    }
 }
 
-// let newVinyl = new vinyl("After Hours", "The Weeknd", "R&B", "2020", "Good");
 const myCollection = new collection();
-
-// myCollection.addVinyl(newVinyl);
 
 const addBtn = document.querySelector("#addVinyl"); // Prompt user for vinyl information
 addBtn.addEventListener("click", function() {
@@ -33,6 +34,11 @@ addBtn.addEventListener("click", function() {
     let newVinyl = new vinyl(title, artist, genre, releaseYear, condition);
     myCollection.addVinyl(newVinyl);
     console.log(myCollection.records);
+});
+
+const removeBtn = document.querySelector("#removeVinyl");
+removeBtn.addEventListener("click", function() {
+    myCollection.removeVinyl(prompt("Enter the title of the vinyl you'd like to remove")); // Prompt user for title to remove
 });
 
 const printBtn = document.querySelector("#printCollection");

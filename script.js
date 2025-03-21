@@ -10,15 +10,11 @@ class vinyl {
 
 class collection {
     constructor() {
-        this.records = [];
+        this.records = []; // Initalize array for collection
     }
 
     addVinyl(vinyl) {
-        this.records.push(vinyl);
-    }
-
-    display() {
-        console.log(this.records);
+        this.records.push(vinyl); // Push vinyl to collection
     }
 }
 
@@ -27,4 +23,13 @@ const myCollection = new collection();
 
 myCollection.addVinyl(newVinyl);
 
-myCollection.display();
+// Convert collection to a string for outputting
+const collectionString = myCollection.records.map(vinyl => `${vinyl.title} by ${vinyl.artist}`).join("\n");
+
+const btn = document.querySelector("button");
+
+btn.addEventListener("click", function() { // Listener for button which will print collection
+    document.querySelector("p").textContent = collectionString;
+});
+
+

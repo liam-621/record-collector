@@ -9,16 +9,29 @@ class vinyl {
 }
 
 class collection {
-    constructor() {
-        this.records = []; // Initalize array for collection
+    // Load collection from localStorage
+    constructor() { 
+        this.records = this.loadCollection();
+    }
+
+    loadCollection() {
+        const collectionData = JSON.parse(localStorage.getItem("collection"));
+        return collectionData ? collectionData : []; // Return the collection, otherwise initalise new array
+    }
+
+    // Save collection to local storage
+    saveCollection() {
+        localStorage.setItem("collection", JSON.stringify(this.records));
     }
 
     addVinyl(vinyl) {
         this.records.push(vinyl); // Push vinyl to collection
+        this.saveCollection();
     }
 
     removeVinyl(name) {
         this.records.splice(this.records.findIndex(vinyl => vinyl.title === name), 1); // Find index of inputted title and remove it
+        this.saveCollection();
     }
 }
 
@@ -48,5 +61,4 @@ printBtn.addEventListener("click", function() { // Listener for button which wil
     const collectionString = myCollection.records.map(vinyl => `${vinyl.title} by ${vinyl.artist}`).join("\n"); 
     document.querySelector("#collection").textContent = collectionString;
 });
-
 

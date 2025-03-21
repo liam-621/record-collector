@@ -58,7 +58,7 @@ const printBtn = document.querySelector("#printCollection");
 
 printBtn.addEventListener("click", function() { // Listener for button which will print collection
     // Convert collection to a string for outputting
-    const collectionString = myCollection.records.map(vinyl => `${vinyl.title} by ${vinyl.artist}`).join("\n"); 
+    const collectionString = myCollection.records.map(vinyl => `${vinyl.title} (${vinyl.releaseYear}) by ${vinyl.artist}`).join(", "); 
     document.querySelector("#collection").textContent = collectionString;
 });
 

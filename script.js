@@ -7,3 +7,9 @@ class vinyl {
         this.condition = condition;
     }
 }
+
+class collection {
+    constructor() {
+        this.records = [];
+    }
+}

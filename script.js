@@ -53,13 +53,9 @@ removeBtn.addEventListener("click", function() {
     myCollection.removeVinyl(prompt("Enter the title of the vinyl you'd like to remove")); // Prompt user for title to remove
 });
 
-const printBtn = document.querySelector("#printCollection");
-
-printBtn.addEventListener("click", function() { 
-    myCollection.records.forEach(vinyl => { // For each vinyl, create a paragraph with vinyl info and append to collection div
-        const vinylInfo = document.createElement("p");
-        vinylInfo.textContent = `${vinyl.title} (${vinyl.releaseYear}) by ${vinyl.artist}`;
-        document.querySelector("#collection").appendChild(vinylInfo);
-        });
-});
+myCollection.records.forEach(vinyl => { // For each vinyl, create a paragraph with vinyl info and append to collection div
+    const vinylInfo = document.createElement("p");
+    vinylInfo.textContent = `${vinyl.title} (${vinyl.releaseYear}) by ${vinyl.artist}`;
+    document.querySelector("#collection").appendChild(vinylInfo);
+    });
 

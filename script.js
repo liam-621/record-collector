@@ -32,9 +32,14 @@ class collection {
     }
 
     removeVinyl(name) {
-        this.records.splice(this.records.findIndex(vinyl => vinyl.title === name), 1); // Find index of inputted title and remove it
-        this.saveCollection();
-        displayCollection();
+        let vinylIndex = this.records.findIndex(vinyl => vinyl.title === name); // Find index of target vinyl
+        if (vinylIndex >= 0) { // Validate input
+            this.records.splice(vinylIndex, 1); 
+            this.saveCollection();
+            displayCollection();
+        } else {
+            alert("Error: Vinyl does not exist");
+        }
     }
 }
 

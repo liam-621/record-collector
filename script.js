@@ -46,7 +46,6 @@ addBtn.addEventListener("click", function() {
     let condition = prompt("Condition?");
     let newVinyl = new vinyl(title, artist, genre, releaseYear, condition);
     myCollection.addVinyl(newVinyl);
-    console.log(myCollection.records);
 });
 
 const removeBtn = document.querySelector("#removeVinyl");
@@ -56,9 +55,11 @@ removeBtn.addEventListener("click", function() {
 
 const printBtn = document.querySelector("#printCollection");
 
-printBtn.addEventListener("click", function() { // Listener for button which will print collection
-    // Convert collection to a string for outputting
-    const collectionString = myCollection.records.map(vinyl => `${vinyl.title} (${vinyl.releaseYear}) by ${vinyl.artist}`).join(", "); 
-    document.querySelector("#collection").textContent = collectionString;
+printBtn.addEventListener("click", function() { 
+    myCollection.records.forEach(vinyl => { // For each vinyl, create a paragraph with vinyl info and append to collection div
+         const vinylInfo = document.createElement("p");
+         vinylInfo.textContent = `${vinyl.title} (${vinyl.releaseYear}) by ${vinyl.artist}`;
+         document.querySelector("#collection").appendChild(vinylInfo);
+        });
 });
 

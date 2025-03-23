@@ -1,10 +1,10 @@
 class vinyl {
-    constructor(title, artist, genre, releaseYear, condition, coverArt) {
+    constructor(title, artist, genre, releaseYear, lpCount, coverArt) {
         this.title = title;
         this.artist = artist;
         this.genre = genre;
         this.releaseYear = releaseYear;
-        this.condition = condition;
+        this.lpCount = lpCount;
         this.coverArt = coverArt;
     }
 }
@@ -67,9 +67,9 @@ addBtn.addEventListener("click", function() {
     let artist = prompt("Artist?");
     let genre = prompt("Genre?");
     let releaseYear = prompt("Release Year?")
-    let condition = prompt("Condition?");
+    let lpCount = prompt("How many LPs?");
     let coverArt = prompt("Please link a cover art image.")
-    let newVinyl = new vinyl(title, artist, genre, releaseYear, condition, coverArt);
+    let newVinyl = new vinyl(title, artist, genre, releaseYear, lpCount, coverArt);
     myCollection.addVinyl(newVinyl);
 });
 

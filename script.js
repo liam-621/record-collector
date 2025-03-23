@@ -1,10 +1,11 @@
 class vinyl {
-    constructor(title, artist, genre, releaseYear, condition) {
+    constructor(title, artist, genre, releaseYear, condition, coverArt) {
         this.title = title;
         this.artist = artist;
         this.genre = genre;
         this.releaseYear = releaseYear;
         this.condition = condition;
+        this.coverArt = coverArt;
     }
 }
 
@@ -43,6 +44,9 @@ function displayCollection() {
     const collectionDiv = document.querySelector("#collection");
     collectionDiv.innerHTML = ''; // Reset collection
     myCollection.records.forEach(vinyl => { // For each vinyl, create a paragraph with vinyl info and append to collection div
+        const vinylArt = document.createElement("img");
+        vinylArt.src = vinyl.coverArt;
+        collectionDiv.appendChild(vinylArt);
         const vinylInfo = document.createElement("p");
         vinylInfo.textContent = `${vinyl.title} (${vinyl.releaseYear}) by ${vinyl.artist}`;
         collectionDiv.appendChild(vinylInfo);
@@ -58,7 +62,8 @@ addBtn.addEventListener("click", function() {
     let genre = prompt("Genre?");
     let releaseYear = prompt("Release Year?")
     let condition = prompt("Condition?");
-    let newVinyl = new vinyl(title, artist, genre, releaseYear, condition);
+    let coverArt = prompt("Please link a cover art image.")
+    let newVinyl = new vinyl(title, artist, genre, releaseYear, condition, coverArt);
     myCollection.addVinyl(newVinyl);
 });
 

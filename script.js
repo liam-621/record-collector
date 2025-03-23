@@ -78,13 +78,24 @@ removeBtn.addEventListener("click", function() {
 const apiUrl = "https://bqphu3g3e0.execute-api.us-west-2.amazonaws.com/lastfm-proxy";
 
 async function getAlbumCover(artist, album) {
+    const cacheKey = `albumCover-${artist}-${album}`; 
+
+    const cachedCover = localStorage.getItem(cacheKey); // Check cache before API call
+    if (cachedCover) {
+        return cachedCover;
+    }
+
     try {
         const response = await fetch(`${apiUrl}?artist=${encodeURIComponent(artist)}&album=${encodeURIComponent(album)}`);
         if (!response.ok) {
             throw new Error("Failed to fetch album cover");
         }
         const data = await response.json();
-        return data.image;
+        const albumCover = data.image;
+        
+        localStorage.setItem(cacheKey, albumCover)
+
+        return albumCover;
     } catch (error) {
         console.log("Error", error);
     }

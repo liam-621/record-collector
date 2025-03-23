@@ -29,3 +29,8 @@ body {
 .content-container {
     padding-left: 20px;
 }
+
+#collection {
+    display: flex;
+    gap: 50px;
+}

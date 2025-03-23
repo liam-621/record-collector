@@ -43,13 +43,19 @@ const myCollection = new collection();
 function displayCollection() {
     const collectionDiv = document.querySelector("#collection");
     collectionDiv.innerHTML = ''; // Reset collection
-    myCollection.records.forEach(vinyl => { // For each vinyl, create a paragraph with vinyl info and append to collection div
+    myCollection.records.forEach(vinyl => { // For each vinyl, create cover art image and paragraph
+        // Creating a wrapper to help with styling
+        const vinylWrapper = document.createElement("div");
+        vinylWrapper.setAttribute("id", "vinylWrapper");  
+        collectionDiv.appendChild(vinylWrapper);
+
         const vinylArt = document.createElement("img");
         vinylArt.src = vinyl.coverArt;
-        collectionDiv.appendChild(vinylArt);
+        vinylWrapper.appendChild(vinylArt);
+
         const vinylInfo = document.createElement("p");
         vinylInfo.textContent = `${vinyl.title} (${vinyl.releaseYear}) by ${vinyl.artist}`;
-        collectionDiv.appendChild(vinylInfo);
+        vinylWrapper.appendChild(vinylInfo);
         });
 }
 

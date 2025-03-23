@@ -67,22 +67,36 @@ function displayCollection() {
 displayCollection();
 
 const addBtn = document.querySelector("#addVinyl"); // Prompt user for vinyl information
-addBtn.addEventListener("click", function() {
-    let title = prompt("Title?");
-    let artist = prompt("Artist?");
-    let genre = prompt("Genre?");
-    let releaseYear = prompt("Release Year?")
-    let lpCount = prompt("How many LPs?");
-    let coverArt = prompt("Please link a cover art image.")
-    let newVinyl = new vinyl(title, artist, genre, releaseYear, lpCount, coverArt);
-    myCollection.addVinyl(newVinyl);
-});
+addBtn.addEventListener("click", createVinyl);
 
 const removeBtn = document.querySelector("#removeVinyl");
 removeBtn.addEventListener("click", function() {
     myCollection.removeVinyl(prompt("Enter the title of the vinyl you'd like to remove")); // Prompt user for title to remove
 });
 
+// Retrieve album cover from LastFM
+const apiUrl = "https://bqphu3g3e0.execute-api.us-west-2.amazonaws.com/lastfm-proxy";
 
-    
+async function getAlbumCover(artist, album) {
+    try {
+        const response = await fetch(`${apiUrl}?artist=${encodeURIComponent(artist)}&album=${encodeURIComponent(album)}`);
+        if (!response.ok) {
+            throw new Error("Failed to fetch album cover");
+        }
+        const data = await response.json();
+        return data.image;
+    } catch (error) {
+        console.log("Error", error);
+    }
+}
 
+async function createVinyl() {
+    let title = prompt("Title?");
+    let artist = prompt("Artist?");
+    let genre = prompt("Genre?");
+    let releaseYear = prompt("Release Year?")
+    let lpCount = prompt("How many LPs?");
+    let coverArt = await getAlbumCover(artist, title);
+    let newVinyl = new vinyl(title, artist, genre, releaseYear, lpCount, coverArt);
+    myCollection.addVinyl(newVinyl);
+}

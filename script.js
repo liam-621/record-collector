@@ -58,9 +58,15 @@ function displayCollection() {
         vinylArt.src = vinyl.coverArt;
         vinylWrapper.appendChild(vinylArt);
 
-        const vinylInfo = document.createElement("p");
-        vinylInfo.textContent = `${vinyl.title} (${vinyl.releaseYear}) by ${vinyl.artist}`;
-        vinylWrapper.appendChild(vinylInfo);
+        const vinylTitle = document.createElement("p");
+        vinylTitle.setAttribute("id", "vinylTitle");
+        vinylTitle.textContent = `${vinyl.title} (${vinyl.releaseYear})`;
+        vinylWrapper.appendChild(vinylTitle);
+
+        const vinylArtist = document.createElement("p");
+        vinylArtist.setAttribute("id", "vinylArtist");
+        vinylArtist.textContent = `${vinyl.artist}`;
+        vinylWrapper.appendChild(vinylArtist);
         });
 }
 
@@ -92,7 +98,7 @@ async function getAlbumCover(artist, album) {
         }
         const data = await response.json();
         const albumCover = data.image;
-        
+
         localStorage.setItem(cacheKey, albumCover)
 
         return albumCover;

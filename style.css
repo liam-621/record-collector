@@ -34,4 +34,13 @@ body {
     display: flex;
     gap: 50px;
     flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+#vinylTitle {
+    font-weight: bold;
+}
+
+#vinylTitle, #vinylArtist {
+    margin: 0px;
 }

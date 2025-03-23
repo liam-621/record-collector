@@ -12,9 +12,15 @@ button {
 }
 
 .toolbar {
-    border-bottom: 4px solid lightgrey;
+    border-bottom: 2px solid lightgrey;
     width: 100%;
     padding: 0px 18px;
+    display: flex;
+    gap: 10px;
+}
+
+.toolbar p {
+    color: #1c274c;
 }
 
 body {

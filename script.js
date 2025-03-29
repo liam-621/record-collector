@@ -51,21 +51,22 @@ function displayCollection() {
     myCollection.records.forEach((vinyl, index) => { // For each vinyl, create cover art image and paragraph
         // Creating a wrapper to help with styling
         const vinylWrapper = document.createElement("div");
-        vinylWrapper.setAttribute("class", "vinylWrapper");  
+        vinylWrapper.classList.add("vinylWrapper");
         collectionDiv.appendChild(vinylWrapper);
 
         const vinylArt = document.createElement("img");
         vinylArt.src = vinyl.coverArt;
+        vinylArt.width = `300`;
         vinylWrapper.appendChild(vinylArt);
 
         const vinylTitle = document.createElement("p");
-        vinylTitle.setAttribute("class", "vinylTitle");
+        vinylTitle.classList.add("vinylTitle");
         vinylTitle.setAttribute("data-index", index);
         vinylTitle.textContent = `${vinyl.title} (${vinyl.releaseYear})`;
         vinylWrapper.appendChild(vinylTitle);
 
         const vinylArtist = document.createElement("p");
-        vinylArtist.setAttribute("class", "vinylArtist");
+        vinylArtist.classList.add("vinylArtist");
         vinylArtist.textContent = `${vinyl.artist}`;
         vinylWrapper.appendChild(vinylArtist);
         });
@@ -160,9 +161,12 @@ function closeDetailModal () {
     detailModal.style.display = "none";
 }
 
+let currentRecordIndex; // Use this to keep track of the currently opened record
+
 collectionDiv.addEventListener("click", function(event) {
     if (event.target.classList.contains("vinylTitle")) { // Open modal if vinyl title is clicked
         const index = event.target.getAttribute('data-index')
+        currentRecordIndex = index;
         const currentRecord = myCollection.records[index];
 
         document.querySelector("#recordTitle").textContent = currentRecord.title;
@@ -177,5 +181,17 @@ collectionDiv.addEventListener("click", function(event) {
 
 closeDetailModalBtn.addEventListener("click", closeDetailModal);
 
+// Code for buttons inside the modal
+const changeCoverBtn = document.querySelector("#changeCoverBtn");
+const removeVinylBtn = document.querySelector("#removeVinylBtn");
 
+changeCoverBtn.addEventListener("click", function() {
+    const newCoverUrl = prompt("Enter new cover art URL:");
 
+    if (newCoverUrl) {
+        myCollection.records[currentRecordIndex].coverArt = newCoverUrl;
+
+        displayCollection();
+        myCollection.saveCollection();
+    }
+});

@@ -108,11 +108,11 @@ async function getAlbumCover(artist, album) {
 }
 
 async function createVinyl() {
-    let title = prompt("Title?");
-    let artist = prompt("Artist?");
-    let genre = prompt("Genre?");
-    let releaseYear = prompt("Release Year?")
-    let lpCount = prompt("How many LPs?");
+    let title = document.querySelector("#title").value;
+    let artist = document.querySelector("#artist").value;
+    let genre = document.querySelector("#genre").value;
+    let releaseYear = document.querySelector("#releaseYear").value;
+    let lpCount = document.querySelector("#lpCount").value;
     let coverArt = await getAlbumCover(artist, title);
     let newVinyl = new vinyl(title, artist, genre, releaseYear, lpCount, coverArt);
     myCollection.addVinyl(newVinyl);
@@ -122,9 +122,7 @@ async function createVinyl() {
 const openModalBtn = document.querySelector("#openModal");
 const closeModalBtn = document.querySelector("#closeModal");
 const modal = document.querySelector("#modal");
-
-openModalBtn.addEventListener("click", openModal);
-closeModalBtn.addEventListener("click", closeModal);
+const recordForm = document.querySelector("#recordForm");
 
 function openModal() {
     modal.style.display = "block";
@@ -133,3 +131,16 @@ function openModal() {
 function closeModal() {
     modal.style.display = "none";
 }
+
+openModalBtn.addEventListener("click", openModal);
+
+closeModalBtn.addEventListener("click", closeModal);
+
+recordForm.addEventListener("submit", function(event) {
+    event.preventDefault(); // Make sure form doesn't refresh page
+
+    createVinyl();
+
+    closeModal();
+});
+

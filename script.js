@@ -48,7 +48,7 @@ const collectionDiv = document.querySelector("#collection");
 
 function displayCollection() {
     collectionDiv.innerHTML = ''; // Reset collection
-    myCollection.records.forEach(vinyl => { // For each vinyl, create cover art image and paragraph
+    myCollection.records.forEach((vinyl, index) => { // For each vinyl, create cover art image and paragraph
         // Creating a wrapper to help with styling
         const vinylWrapper = document.createElement("div");
         vinylWrapper.setAttribute("class", "vinylWrapper");  
@@ -60,6 +60,7 @@ function displayCollection() {
 
         const vinylTitle = document.createElement("p");
         vinylTitle.setAttribute("class", "vinylTitle");
+        vinylTitle.setAttribute("data-index", index);
         vinylTitle.textContent = `${vinyl.title} (${vinyl.releaseYear})`;
         vinylWrapper.appendChild(vinylTitle);
 
@@ -147,11 +148,30 @@ recordForm.addEventListener("submit", function(event) {
 // Pop up for viewing record details
 const vinylTitle = document.querySelector(".vinylTitle");
 const detailModal = document.querySelector("#detailModal");
+const closeDetailModalBtn = document.querySelector("#closeDetailModal");
+
+function closeDetailModal () {
+    modalOverlay.style.display = "none";
+    detailModal.style.display = "none";
+}
 
 collectionDiv.addEventListener("click", function(event) {
     if (event.target.classList.contains("vinylTitle")) { // Open modal if vinyl title is clicked
+        const index = event.target.getAttribute('data-index')
+        const currentRecord = myCollection.records[index];
+
+        document.querySelector("#recordTitle").textContent = currentRecord.title;
+        document.querySelector("#recordArtist").textContent = currentRecord.artist;
+        document.querySelector("#recordGenre").textContent = currentRecord.genre;
+        document.querySelector("#recordYear").textContent = currentRecord.releaseYear;
+        document.querySelector("#recordDisc").textContent = currentRecord.lpCount;
+
         modalOverlay.style.display = "block";
         detailModal.style.display = "block";
     }
 })
+
+closeDetailModalBtn.addEventListener("click", closeDetailModal);
+
+
 

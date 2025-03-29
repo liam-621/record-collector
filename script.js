@@ -81,7 +81,7 @@ removeBtn.addEventListener("click", function() {
 });
 
 // Retrieve album cover from LastFM
-const apiUrl = "https://bqphu3g3e0.execute-api.us-west-2.amazonaws.com/lastfm-proxy";
+const apiUrl = "https://djmpidlk2d.execute-api.us-west-2.amazonaws.com/proxy-fm";
 
 async function getAlbumCover(artist, album) {
     const cacheKey = `albumCover-${artist}-${album}`; 
@@ -117,3 +117,9 @@ async function createVinyl() {
     let newVinyl = new vinyl(title, artist, genre, releaseYear, lpCount, coverArt);
     myCollection.addVinyl(newVinyl);
 }
+
+// Pop-up button for adding records
+const openModalBtn = document.querySelector("#openModal");
+openModalBtn.addEventListener("click", function() {
+    console.log("test");
+});

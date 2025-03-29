@@ -7,8 +7,15 @@ h2 {
 }
 
 button {
-    border: solid 1px;
+    border: solid 1px black;
+    border-radius: 3px;
     padding: 1rem 2rem;
+    background-color: #dadada;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #e2e2e2;
 }
 
 .toolbar {
@@ -111,5 +118,8 @@ body {
 .submit-button {
     background-color: #4295ed;
     color: white;
-    border: solid 1px black;
+}
+
+.submit-button:hover {
+    background-color: #56a2fb;
 }

@@ -119,13 +119,16 @@ async function createVinyl() {
 const openModalBtn = document.querySelector("#openModal");
 const closeModalBtn = document.querySelector("#closeModal");
 const modal = document.querySelector("#modal");
+const modalOverlay = document.querySelector("#modalOverlay");
 const recordForm = document.querySelector("#recordForm");
 
 function openModal() {
+    modalOverlay.style.display = "block";
     modal.style.display = "block";
 }
 
 function closeModal() {
+    modalOverlay.style.display = "none";
     modal.style.display = "none";
 }
 

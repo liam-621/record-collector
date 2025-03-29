@@ -44,14 +44,14 @@ class collection {
 }
 
 const myCollection = new collection();
+const collectionDiv = document.querySelector("#collection");
 
 function displayCollection() {
-    const collectionDiv = document.querySelector("#collection");
     collectionDiv.innerHTML = ''; // Reset collection
     myCollection.records.forEach(vinyl => { // For each vinyl, create cover art image and paragraph
         // Creating a wrapper to help with styling
         const vinylWrapper = document.createElement("div");
-        vinylWrapper.setAttribute("id", "vinylWrapper");  
+        vinylWrapper.setAttribute("class", "vinylWrapper");  
         collectionDiv.appendChild(vinylWrapper);
 
         const vinylArt = document.createElement("img");
@@ -59,12 +59,12 @@ function displayCollection() {
         vinylWrapper.appendChild(vinylArt);
 
         const vinylTitle = document.createElement("p");
-        vinylTitle.setAttribute("id", "vinylTitle");
+        vinylTitle.setAttribute("class", "vinylTitle");
         vinylTitle.textContent = `${vinyl.title} (${vinyl.releaseYear})`;
         vinylWrapper.appendChild(vinylTitle);
 
         const vinylArtist = document.createElement("p");
-        vinylArtist.setAttribute("id", "vinylArtist");
+        vinylArtist.setAttribute("class", "vinylArtist");
         vinylArtist.textContent = `${vinyl.artist}`;
         vinylWrapper.appendChild(vinylArtist);
         });
@@ -143,4 +143,15 @@ recordForm.addEventListener("submit", function(event) {
 
     closeModal();
 });
+
+// Pop up for viewing record details
+const vinylTitle = document.querySelector(".vinylTitle");
+const detailModal = document.querySelector("#detailModal");
+
+collectionDiv.addEventListener("click", function(event) {
+    if (event.target.classList.contains("vinylTitle")) { // Open modal if vinyl title is clicked
+        modalOverlay.style.display = "block";
+        detailModal.style.display = "block";
+    }
+})
 

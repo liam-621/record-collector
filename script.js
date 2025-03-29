@@ -72,9 +72,6 @@ function displayCollection() {
 
 displayCollection();
 
-const addBtn = document.querySelector("#addVinyl"); // Prompt user for vinyl information
-addBtn.addEventListener("click", createVinyl);
-
 const removeBtn = document.querySelector("#removeVinyl");
 removeBtn.addEventListener("click", function() {
     myCollection.removeVinyl(prompt("Enter the title of the vinyl you'd like to remove")); // Prompt user for title to remove
@@ -139,7 +136,7 @@ closeModalBtn.addEventListener("click", closeModal);
 recordForm.addEventListener("submit", function(event) {
     event.preventDefault(); // Make sure form doesn't refresh page
 
-    createVinyl();
+    createVinyl(); 
 
     closeModal();
 });

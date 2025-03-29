@@ -107,3 +107,9 @@ body {
     margin: 0;
     padding: 5px;
 }
+
+.submit-button {
+    background-color: #4295ed;
+    color: white;
+    border: solid 1px black;
+}

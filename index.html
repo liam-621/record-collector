@@ -41,18 +41,20 @@
 
                 <div style="text-align: right">
                     <button type="submit">Submit</button>
-                    <button type="button" id="closeModal" class="close">Cancel</button>
+                    <button type="button" id="closeModal">Cancel</button>
                 </div>
             </form>
         </div>
 
         <div id="detailModal" class="modal">
             <span id="closeDetailModal" class="close">&times</span>
-            <p>Title: <span id="recordTitle"></span></p> 
-            <p>Artist: <span id="recordArtist"></span></p> 
-            <p>Genre: <span id="recordGenre"></span></p> 
-            <p>Release Year: <span id="recordYear"></span></p> 
-            <p>Disc Count: <span id="recordDisc"></span></p> 
+            <div class="modal-content">
+                <p><strong>Title:</strong> <span id="recordTitle"></span></p> 
+                <p><strong>Artist:</strong> <span id="recordArtist"></span></p> 
+                <p><strong>Genre:</strong> <span id="recordGenre"></span></p> 
+                <p><strong>Release Year:</strong> <span id="recordYear"></span></p> 
+                <p><strong>Disc Count:</strong> <span id="recordDisc"></span></p> 
+            </div>
         </div>
     </div>
 </body>

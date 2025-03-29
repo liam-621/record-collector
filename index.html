@@ -19,6 +19,17 @@
         <button id="addVinyl">add vinyl</button>
         <button id="openModal">add vinyl - popup edition</button>
         <button id="removeVinyl">remove vinyl</button>
+        <div id="modal" class="modal">
+            <h2>add record</h2>
+            <form id="recordForm">
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" required>
+                <div style="text-align: right">
+                    <button type="submit">Submit</button>
+                    <button type="button" id="closeModal">Cancel</button>
+                </div>
+            </form>
+        </div>
     </div>
 </body>
 </html>

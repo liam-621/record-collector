@@ -120,6 +120,16 @@ async function createVinyl() {
 
 // Pop-up button for adding records
 const openModalBtn = document.querySelector("#openModal");
-openModalBtn.addEventListener("click", function() {
-    console.log("test");
-});
+const closeModalBtn = document.querySelector("#closeModal");
+const modal = document.querySelector("#modal");
+
+openModalBtn.addEventListener("click", openModal);
+closeModalBtn.addEventListener("click", closeModal);
+
+function openModal() {
+    modal.style.display = "block";
+}
+
+function closeModal() {
+    modal.style.display = "none";
+}

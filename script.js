@@ -150,6 +150,11 @@ const vinylTitle = document.querySelector(".vinylTitle");
 const detailModal = document.querySelector("#detailModal");
 const closeDetailModalBtn = document.querySelector("#closeDetailModal");
 
+function openDetailModal () {
+    modalOverlay.style.display = "block";
+    detailModal.style.display = "block";
+}
+
 function closeDetailModal () {
     modalOverlay.style.display = "none";
     detailModal.style.display = "none";
@@ -166,8 +171,7 @@ collectionDiv.addEventListener("click", function(event) {
         document.querySelector("#recordYear").textContent = currentRecord.releaseYear;
         document.querySelector("#recordDisc").textContent = currentRecord.lpCount;
 
-        modalOverlay.style.display = "block";
-        detailModal.style.display = "block";
+        openDetailModal();
     }
 })
 

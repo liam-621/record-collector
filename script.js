@@ -31,8 +31,8 @@ class collection {
         displayCollection();
     }
 
-    removeVinyl(name) {
-        let vinylIndex = this.records.findIndex(vinyl => vinyl.title === name); // Find index of target vinyl
+    removeVinyl(vinylIndex) {
+        // let vinylIndex = this.records.findIndex(vinyl => vinyl.title === name); // Find index of target vinyl
         if (vinylIndex >= 0) { // Validate input
             this.records.splice(vinylIndex, 1); 
             this.saveCollection();
@@ -73,11 +73,6 @@ function displayCollection() {
 }
 
 displayCollection();
-
-const removeBtn = document.querySelector("#removeVinyl");
-removeBtn.addEventListener("click", function() {
-    myCollection.removeVinyl(prompt("Enter the title of the vinyl you'd like to remove")); // Prompt user for title to remove
-});
 
 // Retrieve album cover from LastFM
 const apiUrl = "https://djmpidlk2d.execute-api.us-west-2.amazonaws.com/proxy-fm";
@@ -193,7 +188,7 @@ collectionDiv.addEventListener("click", function(event) {
 
 closeDetailModalBtn.addEventListener("click", closeDetailModal);
 
-// Code for buttons inside the modal
+// Code for buttons inside the detail modal
 const changeCoverBtn = document.querySelector("#changeCoverBtn");
 const removeVinylBtn = document.querySelector("#removeVinylBtn");
 
@@ -207,3 +202,8 @@ changeCoverBtn.addEventListener("click", function() {
         myCollection.saveCollection();
     }
 });
+
+removeVinylBtn.addEventListener("click", function () {
+    myCollection.removeVinyl(currentRecordIndex);
+    closeDetailModal();
+})

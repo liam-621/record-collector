@@ -138,6 +138,18 @@ openModalBtn.addEventListener("click", openModal);
 
 closeModalBtn.addEventListener("click", closeModal);
 
+modalOverlay.addEventListener("click", function() { // When user clicks on the modal overlay, close the modal
+    modalOverlay.style.display = "none";
+
+    // Check what modal is currently open, then close it
+    if (modal.style.display === "block") {
+        modal.style.display = "none";
+    } else if (detailModal.style.display === "block") {
+        detailModal.style.display = "none";
+    }
+});
+
+// Form to enter vinyl details
 recordForm.addEventListener("submit", function(event) {
     event.preventDefault(); // Make sure form doesn't refresh page
 
